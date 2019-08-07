@@ -1,5 +1,6 @@
 import React from 'react';
 import { withFormik, Form, Field } from "formik";
+import axios from 'axios';
 
 
 const UserForm = () => {
@@ -27,6 +28,13 @@ const FormikUserForm = withFormik({
             email: email || "",
             password: password || "",
         }
+    },
+
+    handleSubmit(values){
+        console.log("Form submitted", values);
+        axios.post("https://reqres.in/api/users", values)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 })(UserForm);
 
